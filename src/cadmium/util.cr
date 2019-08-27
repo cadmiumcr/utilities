@@ -7,4 +7,13 @@ module Cadmium::Util
     end
     str
   end
+
+  macro method_generator(hash)
+    {% for name, mod in hash %}
+      # Convenience method for accessing `{{ mod }}`
+      def self.{{ name.id }}
+        {{ mod }}
+      end
+    {% end %}
+  end
 end
